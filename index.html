@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css" />
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -13,7 +14,48 @@
     <title>Lorem Ipsum Generator</title>
 </head>
 <body>
-    
+    <header class="header_main-header">
+        <div class="">
+            <a href="https://github.com/iasjem/lorem-ipsum-generator">
+                <i class="fab fa-github"></i>
+                Github Repository
+            </a>
+        </div>
+    </header>
+    <main>
+        <header class="">
+            <h1>Lorem Ipsum Generator</h1>
+            <p>Generate your own Lorem Ipsum placeholder text</p>
+        </header>
+        <section class="">
+            <header class="">
+                <div class="">
+                    <input class="input_output-count" id="input_count_of_output" type="number" value="1" min="1" />
+                    <select class="select_output-type" id="select_type_of_output">
+                        <option value="paragraphs" selected>Paragraphs</option>
+                        <option value="sentences">Sentences</option>
+                        <option value="words">Words</option>
+                    </select>
+                    <button class="btn_generate-output" id="button_generate_output">Generate</button>
+                </div>
+                <div class="">
+                    <button class="btn_copy-output" id="button_copy_output">Copy <i class="far fa-clipboard"></i></button>
+                </div>
+            </header>
+            <div class="div_output-display" id="div_output_display" class=""></div>
+        </section>
+    </main>
+    <footer class="footer_main-footer">
+        <div class="">
+            <h4>Authors:</h4>
+            <a href="https://github.com/iasjem">@iasjem</a>
+            <a href="https://github.com/kinopotato">@kinopotato</a>
+            <a href="https://github.com/danx16">@danx16</a>
+        </div>
+        <div class="">
+            <p>&copy; Copyright 2019. Lorem Ipsum Generator</p>
+        </div>
+    </footer>
     <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
