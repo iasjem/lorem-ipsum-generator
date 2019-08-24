@@ -14,46 +14,52 @@
     <title>Lorem Ipsum Generator</title>
 </head>
 <body>
-    <header class="header_main-header">
-        <div class="">
-            <a href="https://github.com/iasjem/lorem-ipsum-generator">
-                <i class="fab fa-github"></i>
-                Github Repository
-            </a>
-        </div>
+    <header class="container-fluid header_main-header">
+        <a href="https://github.com/iasjem/lorem-ipsum-generator" target="_blank">
+            <i class="fab fa-github"></i>
+            Github Repository
+        </a>
     </header>
-    <main>
-        <header class="">
+    <main class="container">
+        <header class="jumbotron">
             <h1>Lorem Ipsum Generator</h1>
             <p>Generate your own Lorem Ipsum placeholder text</p>
         </header>
-        <section class="">
-            <header class="">
-                <div class="">
-                    <input class="input_output-count" id="input_count_of_output" type="number" value="1" min="1" />
-                    <select class="select_output-type" id="select_type_of_output">
+        <section class="container-fluid">
+            <div style="margin-bottom: 15px;">
+                <button class="btn btn-primary mb-2 col-md-2 col-sm" id="button_copy_output">Copy</button>
+            </div>
+            <div class="form-row">
+                <div class="col-md-1 col-sm-2 col-2">
+                    <input class="form-control mb-2 mr-sm-2 input_output-count" id="input_count_of_output" type="number" value="1" min="1" max="50" />
+                </div>
+                <div class="col-md-4 col-6">
+                    <select class="form-control mb-2 mr-sm-2 select_output-type" id="select_type_of_output">
                         <option value="paragraphs" selected>Paragraphs</option>
                         <option value="sentences">Sentences</option>
                         <option value="words">Words</option>
                     </select>
-                    <button class="btn_generate-output" id="button_generate_output">Generate</button>
                 </div>
-                <div class="">
-                    <button class="btn_copy-output" id="button_copy_output">Copy <i class="far fa-clipboard"></i></button>
+                <div class="col-md-2 col-sm-4 col">
+                    <button class="btn btn-primary btn-block mb-2" id="button_generate_output">Generate</button>
                 </div>
-            </header>
-            <div class="div_output-display" id="div_output_display" class=""></div>
+            </div>
+            <div class="div_output-display" id="div_output_display">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
         </section>
     </main>
-    <footer class="footer_main-footer">
-        <div class="">
-            <h4>Authors:</h4>
-            <a href="https://github.com/iasjem">@iasjem</a>
-            <a href="https://github.com/kinopotato">@kinopotato</a>
-            <a href="https://github.com/danx16">@danx16</a>
-        </div>
-        <div class="">
-            <p>&copy; Copyright 2019. Lorem Ipsum Generator</p>
+    <footer class="container-fluid footer_main-footer">
+        <div class="container div_footer-content">
+            <div class="div_authors-list">
+                <h4>Authors</h4>
+                <a href="https://github.com/iasjem" target="_blank">@iasjem</a>
+                <span class="text-divider">|</span>
+                <a href="https://github.com/kinopotato" target="_blank">@kinopotato</a>
+                <span class="text-divider">|</span>
+                <a href="https://github.com/danx16" target="_blank">@danx16</a>
+            </div>
+            <div>
+                <p>&copy; Copyright 2019. Lorem Ipsum Generator</p>
+            </div>
         </div>
     </footer>
     <script type="text/javascript" src="script.js"></script>
