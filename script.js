@@ -104,18 +104,7 @@ const setParagraphs = (count) => {
     return paragraphs.join('').toString();
 };
 
-const initGenerator = () => {
-    fieldOutputCount.val('1');
-    selectorOutputType.val('paragraphs');
-    setOutputDisplay(setParagraphs(outputCount));
-};
-
-
-/** JQUERY COMPONENTS */
-
-$(document).ready(initGenerator);
-
-buttonGenerateOutput.click(function () {
+const generateOutput = () => {
     let outputCount = fieldOutputCount.val();
     let outputType = selectorOutputType.val();
 
@@ -138,6 +127,21 @@ buttonGenerateOutput.click(function () {
             clearOutputDisplay();
             break;
     }
+};
+
+const initGenerator = () => {
+    fieldOutputCount.val('1');
+    selectorOutputType.val('paragraphs');
+    generateOutput();
+};
+
+
+/** JQUERY COMPONENTS */
+
+$(document).ready(initGenerator);
+
+buttonGenerateOutput.click(function () {
+    generateOutput();
 });
 
 buttonCopyOutput.click(function () {
