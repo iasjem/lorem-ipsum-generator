@@ -20,27 +20,59 @@ const SET_OF_WORDS = [
 
 const FIRST_SENTENCE = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
+const MAX_COUNT_OF_WORDS_IN_SENTENCE = 10;
+
 
 /** FUNCTIONS */
 
-const getCountOfWords = () => {
-    return 0;
-}
+const randomize = (count) => Math.floor((Math.random() * count) + 1);
+
+const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+
+const clearOutputDisplay = () => divOutputDisplay.html('');
+
+const setOutputDisplay = (output) => divOutputDisplay.html(output);
+
+const getCountOfWords = () => randomize(MAX_COUNT_OF_WORDS_IN_SENTENCE);
 
 const getSetOfWords = () => {
-    return SET_OF_WORDS[0];
+    let index = randomize(SET_OF_WORDS.length - 1);
+    return SET_OF_WORDS[index];
 };
 
 const setWords = (count) => {
-    let words = '';
+    let words = [];
 
-    return words;
+    for (let i = 0; i < count; i++) {
+        let word = capitalize(getSetOfWords());
+        words.push(word);
+    }
+
+    return words.join(' ').toString();
 };
 
-const setSentences = (count) => {
-    let sentences = '';
+const setSentence = () => {
+    let sentence = [];
+    let countOfWords = getCountOfWords();
 
-    return sentences;
+    for (let i = 0; i < countOfWords; i++) {
+        sentence.push(getSetOfWords());
+    }
+
+    let punctuation = sentence.length > 0 && sentence.length <= 3 ? '!' : '.';
+    let newSentence = capitalize(sentence.join(' ').toString() + punctuation);
+
+    return newSentence.concat(' ');
+}
+
+const setSentences = (count) => {
+    let sentences = [];
+
+    for (let i = 0; i < count; i++) {
+        sentences.push(setSentence());
+    }
+
+    return sentences.join('').toString();
 };
 
 const setParagraphs = (count) => {
@@ -49,15 +81,39 @@ const setParagraphs = (count) => {
     return paragraphs;
 };
 
+const initGenerator = () => {
+    fieldOutputCount.val('1');
+    selectorOutputType.val('paragraphs');
+    setOutputDisplay(FIRST_SENTENCE);
+};
+
 
 /** JQUERY COMPONENTS */
 
-$(document).ready(function () {
-
-});
+$(document).ready(initGenerator);
 
 buttonGenerateOutput.click(function () {
+    let outputCount = fieldOutputCount.val();
+    let outputType = selectorOutputType.val();
 
+    clearOutputDisplay();
+
+    switch (outputType) {
+        case 'words':
+            let words = setWords(outputCount);
+            setOutputDisplay(words);
+            break;
+        case 'sentences':
+            let sentences = setSentences(outputCount);
+            setOutputDisplay(sentences);
+            break;
+        case 'paragraphs':
+            setOutputDisplay(FIRST_SENTENCE);
+            break;
+        default:
+            clearOutputDisplay();
+            break;
+    }
 });
 
 buttonCopyOutput.click(function () {
