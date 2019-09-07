@@ -18,14 +18,17 @@ const SET_OF_WORDS = [
     "augue", "purus", "scelerisque", "hac", "enim", "tellus", "platea", "habitasse", "arcu", "dictumst", "ultricies"
 ];
 
-const FIRST_SENTENCE = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+const FIRST_SENTENCE = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ";
 
 const MAX_COUNT_OF_WORDS_IN_SENTENCE = 10;
+const MIN_COUNT_OF_WORDS_IN_SENTENCE = 5;
+const MAX_COUNT_OF_SENTENCES_IN_PARAGRAPH = 9;
+const MIN_COUNT_OF_SENTENCES_IN_PARAGRAPH = 4;
 
 
 /** FUNCTIONS */
 
-const randomize = (count) => Math.floor((Math.random() * count) + 1);
+const randomize = (maxCount, minCount) => Math.floor((Math.random() * (maxCount - minCount)) + minCount);
 
 const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
@@ -33,10 +36,12 @@ const clearOutputDisplay = () => divOutputDisplay.html('');
 
 const setOutputDisplay = (output) => divOutputDisplay.html(output);
 
-const getCountOfWords = () => randomize(MAX_COUNT_OF_WORDS_IN_SENTENCE);
+const getCountOfWords = () => randomize(MAX_COUNT_OF_WORDS_IN_SENTENCE, MIN_COUNT_OF_WORDS_IN_SENTENCE);
+
+const getCountOfSentences = () => randomize(MAX_COUNT_OF_SENTENCES_IN_PARAGRAPH, MIN_COUNT_OF_SENTENCES_IN_PARAGRAPH);
 
 const getSetOfWords = () => {
-    let index = randomize(SET_OF_WORDS.length - 1);
+    let index = randomize(SET_OF_WORDS.length - 1, 1);
     return SET_OF_WORDS[index];
 };
 
@@ -48,7 +53,7 @@ const setWords = (count) => {
         words.push(word);
     }
 
-    return words.join(' ').toString();
+    return `<p>${words.join(' ').toString()}</p>`;
 };
 
 const setSentence = () => {
@@ -72,19 +77,37 @@ const setSentences = (count) => {
         sentences.push(setSentence());
     }
 
-    return sentences.join('').toString();
+    return `<p>${sentences.join('').toString()}</p>`;
+};
+
+const setParagraph = () => {
+    let paragraph = [];
+    let countOfSentences = getCountOfSentences();
+
+    for (let i = 0; i < countOfSentences; i++) {
+        paragraph.push(setSentence());
+    }
+
+    return `<p>${paragraph.join('').toString()}</p>`;
 };
 
 const setParagraphs = (count) => {
-    let paragraphs = '';
+    let paragraphs = [];
 
-    return paragraphs;
+    for (let i = 0; i < count; i++) {
+        paragraphs.push(setParagraph());
+    }
+
+    // Insert the Lorem ipsum default sentence on first paragraph
+    paragraphs[0] = paragraphs[0].slice(0, 3) + FIRST_SENTENCE + paragraphs[0].slice(3);
+
+    return paragraphs.join('').toString();
 };
 
 const initGenerator = () => {
     fieldOutputCount.val('1');
     selectorOutputType.val('paragraphs');
-    setOutputDisplay(FIRST_SENTENCE);
+    setOutputDisplay(setParagraphs(outputCount));
 };
 
 
@@ -108,7 +131,8 @@ buttonGenerateOutput.click(function () {
             setOutputDisplay(sentences);
             break;
         case 'paragraphs':
-            setOutputDisplay(FIRST_SENTENCE);
+            let paragraphs = setParagraphs(outputCount);
+            setOutputDisplay(paragraphs);
             break;
         default:
             clearOutputDisplay();
